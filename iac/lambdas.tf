@@ -23,7 +23,7 @@ resource "aws_lambda_function" "email_processor_lambda" {
   source_code_hash = data.archive_file.email_processor_lambda_zip.output_base64sha256
 
   handler = "main.lambda_handler"
-  runtime = "python3.9"
+  runtime = "python3.11"
 
   timeout     = 60
   memory_size = 128
@@ -51,7 +51,7 @@ resource "aws_lambda_function" "tmdb_scanner_lambda" {
   source_code_hash = data.archive_file.tmdb_scanner_lambda_zip.output_base64sha256
 
   handler = "main.lambda_handler"
-  runtime = "python3.9"
+  runtime = "python3.11"
 
   timeout     = 300
   memory_size = 128
@@ -81,7 +81,7 @@ resource "aws_lambda_function" "ses_sender_lambda" {
   source_code_hash = data.archive_file.ses_sender_lambda_zip.output_base64sha256
 
   handler = "main.lambda_handler"
-  runtime = "python3.9"
+  runtime = "python3.11"
 
   timeout     = 60
   memory_size = 128
