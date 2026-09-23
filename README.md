@@ -31,7 +31,7 @@ comprehensive content information.
 
 2. Copy the url
 
-3. Send an email to `subscribe@watchdrop.org` with the heading
+3. Send an email to `subscribe@watchdrop.org` (or `WatchDrop@watchdrop.org`) with the heading
    `add https://www.themoviedb.org/tv/83867-andor`
 
 4. You are now subscribed and if a new episode airs, you will receive an email

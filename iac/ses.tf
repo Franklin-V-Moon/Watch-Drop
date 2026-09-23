@@ -23,7 +23,10 @@ resource "aws_ses_active_receipt_rule_set" "active_email_receiver_rule_set" {
 resource "aws_ses_receipt_rule" "email_processor_rule" {
   name          = "${var.project_title_lowercase}-email-processor-rule"
   rule_set_name = aws_ses_receipt_rule_set.email_receiver_rule_set.rule_set_name
-  recipients    = [var.ses_receiving_email_address]
+  recipients = [
+    var.ses_receiving_email_address,
+    "WatchDrop@${var.ses_domain}",
+  ]
 
   enabled = true
 

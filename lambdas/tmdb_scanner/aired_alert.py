@@ -16,6 +16,14 @@ def new_ep_html(show_name, season_number, episode_number, episode_name, image_ur
     <a href="mailto:subscribe@watchdrop.org?subject=nuke%20account" style="color: #FF5733; font-weight: bold;">Unsubscribe ALL</a>
     
     <p>For support, email us at franklin.v.moon@gmail.com</p>
+
+    <hr style="margin: 30px 0;">
+    <p style="font-weight: bold;">Want alerts for another show?</p>
+    <p>Find its TV page on <a href="https://www.themoviedb.org/">TMDB</a>, then email the link to
+    <a href="mailto:subscribe@watchdrop.org?subject=add">subscribe@watchdrop.org</a> or
+    <a href="mailto:WatchDrop@watchdrop.org?subject=add">WatchDrop@watchdrop.org</a>
+    with the subject <code>add &lt;TMDB link&gt;</code>.</p>
+    <p>To remove a show, use <code>remove &lt;TMDB link&gt;</code> as the subject.</p>
 </body>
 </html>
 """
@@ -32,5 +40,10 @@ Unsubscribe from this alert: mailto:subscribe@watchdrop.org?subject=remove%20{tm
 Unsubscribe ALL: mailto:subscribe@watchdrop.org?subject=nuke%20account
 
 For support, email us at franklin.v.moon@gmail.com
-"""
 
+Want alerts for another show?
+Find its TV page at https://www.themoviedb.org/, then email the link to
+subscribe@watchdrop.org or WatchDrop@watchdrop.org with the subject: add <TMDB link>
+
+To remove a show, use this subject: remove <TMDB link>
+"""

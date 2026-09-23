@@ -51,7 +51,7 @@ def get_help_instructions_content():
     2. Copy the Link:
        For example: https://www.themoviedb.org/tv/123-show-name
 
-    3. Subscribe to a Show:
+    3. Email either subscribe@watchdrop.org or WatchDrop@watchdrop.org with this subject:
        add [PASTE_YOUR_TMDB_LINK_HERE]
 
     4. Unsubscribe from a Show:
@@ -82,8 +82,9 @@ def get_help_instructions_content():
 
         <div style="margin-bottom: 50px;">
             <h3 style="margin-bottom: 5px;">3. Send an Email</h3>
-            <p style="margin-top: 0; margin-bottom: 0;">Recipient:</p>
-            <b style="margin-left: 2px;"><code>subscribe@watchdrop.org</code></b>
+            <p style="margin-top: 0; margin-bottom: 0;">Send to either address:</p>
+            <b style="margin-left: 2px;"><code>subscribe@watchdrop.org</code></b><br>
+            <b style="margin-left: 2px;"><code>WatchDrop@watchdrop.org</code></b>
             <p style="margin-bottom: 0; margin-top: 3px;">Subject:</p>
             <b style="margin-left: 2px;"><code>add https://www.themoviedb.org/tv/123-show-name</code></b>
             <p style="margin-top: 3px;">Send</p>
