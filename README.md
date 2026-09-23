@@ -1,7 +1,7 @@
 # 💧 Watch Drop: Your Email Driven TV Notification Service
 
-Simple Email service to subscribe and keep track of shows when a new episode is
-available to stream.
+Simple email service to subscribe to TV episode alerts and one-time movie
+streaming alerts.
 
 #### [Try It Now ](mailto:subscribe@watchdrop.org?subject=help)
 
@@ -9,12 +9,12 @@ available to stream.
 
 ## 🚀 Overview
 
-Watch Drop is a serverless, personalized notification service that keeps you
-updated on your favorite TV shows. No more missing new episodes or releases
+Watch Drop is a serverless, personalized notification service for new TV
+episodes and movies that become available to stream.
 
-Once subscribed to a title, Watch Drop automatically creates you an account and
-checks for new content daily, then sends you an email alert when a new episode
-becomes available to stream.
+Once subscribed to a TV show, Watch Drop checks daily for new episodes. Movie
+subscriptions are checked daily for streaming availability and removed after an
+alert is sent.
 
 This project is built leveraging the power of AWS serverless services for
 efficiency and scalability, integrating with The Movie Database (TMDB) for
@@ -26,18 +26,20 @@ comprehensive content information.
 
 ![Watch Drop Instructions](https://raw.githubusercontent.com/OperationFman/Watch-Drop/refs/heads/main/misc/WatchDropInstruction.png)
 
-1. Research what show you want to get alerts for in
-   [TMDB](https://developer.themoviedb.org/reference/tv-series-episode-groups)
+1. Find the TV show or movie you want alerts for on [TMDB](https://www.themoviedb.org/).
 
 2. Copy the url
 
 3. Send an email to `subscribe@watchdrop.org` (or `WatchDrop@watchdrop.org`) with the heading
-   `add https://www.themoviedb.org/tv/83867-andor`
+   `add https://www.themoviedb.org/tv/83867-andor` or
+   `add https://www.themoviedb.org/movie/550-fight-club`
 
-4. You are now subscribed and if a new episode airs, you will receive an email
-   alert to the address you sent from
+4. TV subscriptions send an alert when a new episode airs. Movie subscriptions
+   send one alert when a provider listing is found in any country, including
+   subscription, free, ad-supported, rental, or purchase availability. The
+   movie is removed from your subscriptions after the alert is queued.
 
-5. To unsubscribe from a show, simply send an email with `remove` instead of
+5. To unsubscribe from a movie or show, send an email with `remove` instead of
    `add`
 
 6. To unsubscribe from everything, send an email with `nuke account`
@@ -247,7 +249,7 @@ Click 'Request production access' and fill out the form
 
 ### Testing
 
-Send an email to the @subscribe address, e.g
+Send an email to either configured receiving address, e.g.
 
 Receiver:
 
@@ -261,7 +263,14 @@ Email header:
 add https://www.themoviedb.org/tv/83867-andor
 ```
 
-Note the new show in the DynamoDB Subscription table in AWS
+For a movie, use a movie URL:
+
+```
+add https://www.themoviedb.org/movie/550-fight-club
+```
+
+TV subscriptions remain in DynamoDB. A movie subscription is removed after the
+scanner finds a qualifying provider and queues its one-time alert.
 
 You should now receive an alert at UTC+8
 
@@ -269,7 +278,6 @@ You should now receive an alert at UTC+8
 
 ## ✨ Planned Enhancements
 
-- Movies
 - List all subscribed items
 - Weekly Roundup
 - Enhanced Rate Limiting / Security

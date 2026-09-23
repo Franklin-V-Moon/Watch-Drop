@@ -5,7 +5,7 @@ import re
 from botocore.exceptions import ClientError #type: ignore
 from responses import (
     get_nuke_confirmation_content, get_command_not_understood_content,
-    get_invalid_tmdb_url_content, get_unsupported_content_type_content,
+    get_invalid_tmdb_url_content,
     get_add_success_content, get_remove_success_content, get_operation_failed_content,
     get_help_instructions_content
 ) 
@@ -69,19 +69,21 @@ def lambda_handler(event, context):
                 invoke_ses_sender_lambda(sender_email, subject, body_html, body_text)
                 continue
             
-            content_type, tmdb_id = match.groups()
-            if content_type != 'tv':
-                subject, body_html, body_text = get_unsupported_content_type_content(content_type)
+            content_type, tmdb_slug = match.groups()
+            if not tmdb_slug.split('-', 1)[0].isdigit():
+                subject, body_html, body_text = get_invalid_tmdb_url_content(url_part)
                 invoke_ses_sender_lambda(sender_email, subject, body_html, body_text)
                 continue
 
+            tmdb_id = f"movie:{tmdb_slug}" if content_type == 'movie' else tmdb_slug
+
             if command_prefix == "add":
                 dynamodb_client.put_item(TableName=table_name, Item={'user_email': {'S': sender_email.lower()}, 'tmdb_id': {'S': tmdb_id}})
-                subject, body_html, body_text = get_add_success_content(tmdb_id)
+                subject, body_html, body_text = get_add_success_content(tmdb_slug, content_type)
                 invoke_ses_sender_lambda(sender_email, subject, body_html, body_text)
             else:
                 dynamodb_client.delete_item(TableName=table_name, Key={'user_email': {'S': sender_email.lower()}, 'tmdb_id': {'S': tmdb_id}})
-                subject, body_html, body_text = get_remove_success_content(tmdb_id)
+                subject, body_html, body_text = get_remove_success_content(tmdb_slug, content_type)
                 invoke_ses_sender_lambda(sender_email, subject, body_html, body_text)
             
         except ClientError as e:
